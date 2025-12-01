@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vinayak Mahindrakar | Data Analyst & Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg:#050816;
+      --accent:#38bdf8;
+      --accent-soft:rgba(56,189,248,.1);
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --card:#0b1020;
+      --border:#1f2937;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background: radial-gradient(circle at top,#111827,#020617 60%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    .container {
+      width: min(1100px, 100% - 2.5rem);
+      margin:0 auto;
+    }
+
+    header {
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(16px);
+      background:rgba(2,6,23,.85);
+      border-bottom:1px solid rgba(148,163,184,.15);
+    }
+    .nav {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:.9rem 0;
+    }
+    .logo {
+      font-weight:700;
+      letter-spacing:.05em;
+    }
+    .logo span { color:var(--accent); }
+
+    .nav-links {
+      display:flex;
+      gap:1.5rem;
+      font-size:.9rem;
+    }
+    .nav-links a {
+      position:relative;
+      padding-bottom:.1rem;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0;
+      height:2px;
+      background:var(--accent);
+      transition:width .2s;
+    }
+    .nav-links a:hover::after{ width:100%; }
+
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.35rem;
+      padding:.45rem .9rem;
+      font-size:.8rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.4);
+      background:linear-gradient(135deg,var(--accent-soft),rgba(15,23,42,1));
+    }
+    .btn-primary span.icon{ font-size:1rem; }
+
+    main{ padding:2.5rem 0 4rem; }
+
+    .hero{
+      display:grid;
+      grid-template-columns: minmax(0,3fr) minmax(0,2.4fr);
+      gap:3rem;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.15rem .6rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.4);
+      background:rgba(15,23,42,.8);
+      font-size:.7rem;
+      margin-bottom:.75rem;
+      color:var(--muted);
+    }
+    .pill-dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:var(--accent);
+    }
+
+    .hero-title{
+      font-size:clamp(1.9rem,3vw,2.4rem);
+      font-weight:700;
+      margin-bottom:.5rem;
+    }
+    .hero-title span{ color:var(--accent); }
+
+    .hero-sub{
+      color:var(--muted);
+      font-size:.9rem;
+      max-width:34rem;
+      margin-bottom:1.5rem;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      font-size:.8rem;
+      color:var(--muted);
+    }
+    .hero-meta span.label{
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .hero-actions{
+      margin-top:1.5rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+    }
+
+    .btn-ghost{
+      padding:.45rem .9rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.3);
+      font-size:.8rem;
+      background:rgba(15,23,42,.55);
+    }
+
+    .hero-card{
+      background:radial-gradient(circle at top,var(--accent-soft),rgba(15,23,42,1));
+      border-radius:1.5rem;
+      padding:1.5rem;
+      border:1px solid rgba(148,163,184,.28);
+      box-shadow:0 24px 60px rgba(15,23,42,.9);
+    }
+    .hero-card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:1.1rem;
+      font-size:.78rem;
+      color:var(--muted);
+    }
+    .badge{
+      padding:.15rem .55rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.4);
+      font-size:.68rem;
+    }
+
+    .metrics-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:.75rem;
+      margin-bottom:1.2rem;
+      font-size:.72rem;
+    }
+    .metric{
+      padding:.6rem .65rem;
+      border-radius:.9rem;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(15,23,42,1);
+    }
+    .metric-label{
+      color:var(--muted);
+      font-size:.68rem;
+    }
+    .metric-value{
+      font-weight:600;
+      margin-top:.2rem;
+    }
+    .metric-chip{
+      margin-top:.35rem;
+      font-size:.64rem;
+      color:var(--accent);
+    }
+
+    .stack{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-bottom:1rem;
+    }
+    .chip{
+      padding:.2rem .55rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.3);
+      font-size:.68rem;
+      color:var(--muted);
+    }
+
+    .timeline{
+      border-radius:1rem;
+      border:1px solid rgba(148,163,184,.2);
+      padding:.75rem .8rem;
+      font-size:.7rem;
+      background:rgba(15,23,42,.95);
+    }
+    .timeline-item{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:.4rem;
+    }
+    .timeline-item:last-child{ margin-bottom:0; }
+    .timeline-role{ font-weight:500; }
+    .timeline-company{ color:var(--muted); }
+    .timeline-year{ color:var(--muted); }
+
+    section{ padding:2.5rem 0 0; }
+
+    .section-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:1.4rem;
+    }
+    .section-title{
+      font-size:1.1rem;
+      font-weight:600;
+    }
+    .section-sub{
+      font-size:.8rem;
+      color:var(--muted);
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+    }
+
+    .card{
+      background:rgba(15,23,42,.9);
+      border-radius:1rem;
+      padding:1rem;
+      border:1px solid rgba(30,64,175,.5);
+    }
+    .card h3{
+      font-size:.95rem;
+      margin-bottom:.45rem;
+    }
+    .card p{
+      font-size:.78rem;
+      color:var(--muted);
+      margin-bottom:.5rem;
+    }
+
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.35rem;
+      margin-top:.25rem;
+    }
+    .tag{
+      font-size:.65rem;
+      padding:.15rem .5rem;
+      border-radius:999px;
+      background:rgba(15,23,42,1);
+      border:1px solid rgba(148,163,184,.3);
+      color:var(--muted);
+    }
+
+    .card-link{
+      display:inline-flex;
+      align-items:center;
+      gap:.25rem;
+      font-size:.75rem;
+      margin-top:.4rem;
+      color:var(--accent);
+    }
+
+    .contact{
+      margin-top:2.5rem;
+      border-radius:1.2rem;
+      padding:1.2rem 1.4rem;
+      background:linear-gradient(135deg,rgba(56,189,248,.16),rgba(15,23,42,1));
+      border:1px solid rgba(56,189,248,.4);
+    }
+    .contact-main{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:1rem;
+      align-items:center;
+    }
+    .contact h2{
+      font-size:1rem;
+      margin-bottom:.25rem;
+    }
+    .contact p{
+      font-size:.8rem;
+      color:var(--muted);
+    }
+    .contact-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+    }
+
+    footer{
+      padding:1.5rem 0 0;
+      font-size:.7rem;
+      color:var(--muted);
+      text-align:center;
+      margin-bottom:.75rem;
+    }
+
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      gap:4px;
+      cursor:pointer;
+    }
+    .hamburger span{
+      width:18px;
+      height:2px;
+      background:var(--text);
+    }
+
+    @media (max-width: 900px){
+      .hero{
+        grid-template-columns:minmax(0,1fr);
+        gap:2rem;
+      }
+    }
+    @media (max-width:700px){
+      .nav{ gap:1rem; }
+      .nav-links{
+        position:absolute;
+        inset:48px 0 auto 0;
+        padding:.75rem 1.25rem 1rem;
+        flex-direction:column;
+        background:rgba(2,6,23,.98);
+        border-bottom:1px solid rgba(148,163,184,.2);
+        display:none;
+      }
+      .nav-links.show{ display:flex; }
+      .hamburger{ display:flex; }
+      .hero{ padding-top:.5rem; }
+      .grid-3{ grid-template-columns:minmax(0,1fr); }
+      .contact-main{ align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Vinayak<span>.</span></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </div>
+      <a href="#contact" class="btn-primary">
+        <span class="icon">✉️</span>
+        <span>Hire me</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Data Analyst · SQA · Web</span>
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span>Vinayak</span> — I turn data & ideas into clean dashboards and web experiences.
+        </h1>
+        <p class="hero-sub">
+          Masters student at SDBI with hands-on experience in SQL, Power BI, Python and modern web.
+          I like building dashboards, automations and mini tools that actually solve business problems.
+        </p>
+        <div class="hero-meta">
+          <div><span class="label">Location:</span> Mumbai, India</div>
+          <div><span class="label">Open to:</span> Data / BI / Analyst roles</div>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">
+            <span class="icon">📊</span>
+            <span>View my projects</span>
+          </a>
+          <a href="https://drive.google.com/file/d/1j9DdKRJeKl0TYO6Bqmr11iGNYU6AhBrS/view?usp=drive_link" class="btn-ghost" target="_blank" rel="noreferrer">
+            Download CV
+          </a>
+        </div>
+      </div>
+
+      <!-- HERO CARD -->
+      <aside class="hero-card" aria-label="Portfolio snapshot">
+        <div class="hero-card-header">
+          <div>
+            <div class="badge">Portfolio snapshot</div>
+          </div>
+          <div>Last updated · 2025</div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric">
+            <div class="metric-label">Projects</div>
+            <div class="metric-value">2</div>
+            <div class="metric-chip">Dashboards · Web apps</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Tools</div>
+            <div class="metric-value">SQL · Power BI</div>
+            <div class="metric-chip">Python · Excel</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Status</div>
+            <div class="metric-value">Actively looking</div>
+            <div class="metric-chip">Internship & Full-time</div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <span class="chip">Power BI</span>
+          <span class="chip">SQL (Oracle / MySQL)</span>
+          <span class="chip">Python (Pandas)</span>
+          <span class="chip">HTML · CSS · JS</span>
+          <span class="chip">Git & GitHub</span>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-role">Masters in Data Science and Big data analytics</div>
+              <div class="timeline-company">SDBI</div>
+            </div>
+            <div class="timeline-year">2024 – 2026</div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-role">Google Data Analytics (ongoing)</div>
+              <div class="timeline-company">Coursera</div>
+            </div>
+            <div class="timeline-year">2025</div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-role">Data Analyst · My Green Society</div>
+            </div>
+            <div class="timeline-year">2 yrs</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">About me</h2>
+          <p class="section-sub">A bit of background so you know who you're hiring.</p>
+        </div>
+      </div>
+      <div class="card">
+        <p>
+          I'm currently pursuing my Masters at SDBI and shifting my career into data and analytics.
+          My focus is on understanding business questions first, then building clean, simple solutions:
+          dashboards, queries, automations and small web apps.
+        </p>
+        <p>
+          I enjoy working end-to-end: collecting requirements, cleaning data, modelling, visualizing in
+          Power BI or Excel, and finally presenting insights that non-technical people can actually use.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Skills</h2>
+          <p class="section-sub">Tools & technologies I use in projects.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Data & BI</h3>
+          <p>Building reports and dashboards that answer real business questions.</p>
+          <div class="tag-row">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Data modelling</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Databases</h3>
+          <p>Writing clean SQL for analysis, reporting and performance.</p>
+          <div class="tag-row">
+            <span class="tag">SQL</span>
+            <span class="tag">Joins & CTEs</span>
+            <span class="tag">Aggregate queries</span>
+            <span class="tag">Views</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Web & Automation</h3>
+          <p>Mini tools, scripts and simple frontends to share insights.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">HTML · CSS · JS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-sub">Some work I'm comfortable showing publicly.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Fashion Creation Website</h3>
+          <p>
+           An E-commerce website for fashion designers to showcase their collections and sell their products.
+          </p>
+          <div class="tag-row">
+            <span class="tag">frontend</span>
+            <span class="tag">backend</span>
+          </div>
+          <a href="https://github.com/Abyaskar/Fashion-Creation" target="_blank" rel="noreferrer" class="card-link">
+            <span>View details</span> <span>↗</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Business Analysis Web App</h3>
+          <p>
+            Web app where users upload Excel files, see dynamic charts and get auto-generated insights.
+          </p>
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Python backend</span>
+          </div>
+          <a href="https://github.com/Abyaskar/Business-Analyzing-System" target="_blank" rel="noreferrer" class="card-link">
+            <span>View on GitHub</span> <span>↗</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Power BI Practice Portfolio</h3>
+          <p>
+            Collection of smaller dashboards: HR analytics, customer churn, finance KPIs and more.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Power BI</span>
+            <span class="tag">Excel</span>
+          </div>
+          <a href="https://github.com/Abyaskar/Banking-20250507T075022Z-001" target="_blank" rel="noreferrer" class="card-link">
+            <span>look Dashboards</span> <span>↗</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="contact-main">
+        <div>
+          <h2>Let's work together</h2>
+          <p>
+            I'm open to data / BI / analyst internships and full-time roles.
+            Drop an email and I'll reply within 24 hours.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a href="mailto:wfhmahindrakar@gmail.com" class="btn-primary">
+            <span class="icon">📨</span>
+            <span>Email me</span>
+          </a>
+          <a href="www.linkedin.com/in/vinayak-mahindrakar-b14788273"
+             target="_blank" rel="noreferrer" class="btn-ghost">
+            LinkedIn profile ↗
+          </a>
+          <a href="https://github.com/Abyaskar"
+             target="_blank" rel="noreferrer" class="btn-ghost">
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Vinayak. Built with HTML, CSS & a little JavaScript.
+    </footer>
+  </main>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // Close nav when clicking a link (mobile)
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("show"));
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
